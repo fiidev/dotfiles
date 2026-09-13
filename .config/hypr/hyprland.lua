@@ -134,8 +134,7 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 4.5, spring = "jelly
 
 hl.layer_rule({ match = { namespace = "^(rofi)$" }, blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "^(waybar)$" }, blur = true, ignore_alpha = 0 })
-hl.layer_rule({ match = { namespace = "^(swaync-control-center)$" }, blur = true, ignore_alpha = 0 })
-hl.layer_rule({ match = { namespace = "^(swaync-notification-window)$" }, blur = true, ignore_alpha = 0 })
+hl.layer_rule({ match = { namespace = "^(swaync.*)" }, blur = true, ignore_alpha = 0.5 })
 
 -- ── 8. KEYBINDINGS (ORIGINAL SHELL COMPATIBLE) ──────────────────────────────
 

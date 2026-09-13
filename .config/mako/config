@@ -1,0 +1,46 @@
+# Typography
+font=Plus Jakarta Sans, CommitMono Nerd Font 10
+
+# Position & Layout
+anchor=top-right
+layer=overlay
+width=340
+height=110
+margin=12,16
+padding=12,16
+
+# Aesthetics (Theme Hyprland Clean Frosted)
+background-color=#12121ae6
+text-color=#ffffff
+border-size=1
+border-color=#ffffff30
+border-radius=16
+
+# App Icons
+icons=1
+max-icon-size=36
+icon-location=left
+
+# Behavior & Timing
+max-visible=4
+default-timeout=6000
+group-by=summary
+sort=-time
+markup=1
+
+# Mouse Actions
+on-button-left=invoke-default-action
+on-button-right=dismiss
+on-touch=dismiss
+
+# Urgency Highlights
+[urgency=low]
+background-color=#12121ad0
+border-color=#ffffff20
+text-color=#c0c5d0
+
+[urgency=high]
+background-color=#1a111ae6
+border-color=#ff6b6bcc
+text-color=#ffffff
+default-timeout=0

@@ -47,8 +47,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("batsignal -b -w 30 -c 20 -d 10")
     hl.exec_cmd(home .. "/.config/hypr/scripts/glass-cursor-tracker.py")
-    hl.exec_cmd("swaync")
+    -- swaync dikelola oleh systemd (graphical-session.target), tidak perlu di-exec manual
+    -- hl.exec_cmd("swaync")
 end)
+
 
 -- ── 5. CORE CONFIG (LOOK & FEEL, INPUT, GAPS) ───────────────────────────────
 hl.config({
@@ -95,6 +97,11 @@ hl.config({
     master = {
         mfact = 0.5,
     },
+    scrolling = {
+        column_width = 0.65,
+        focus_fit_method = 1,
+        fullscreen_on_one_column = true,
+    },
     misc = {
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
@@ -134,7 +141,36 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 4.5, spring = "jelly
 
 hl.layer_rule({ match = { namespace = "^(rofi)$" }, blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "^(waybar)$" }, blur = true, ignore_alpha = 0 })
-hl.layer_rule({ match = { namespace = "^(swaync.*)" }, blur = true, ignore_alpha = 0.5 })
+hl.layer_rule({ match = { namespace = "^(swaync.*)$" }, blur = true, ignore_alpha = 0.5 })
+hl.layer_rule({ match = { namespace = "^(glass-notif)$" }, blur = true, ignore_alpha = 0.3 })
+
+-- ── 7b. WINDOW RULES (FORCE FLOAT UNTUK NOTIFIKASI) ─────────────────────────
+-- Paksa semua notification window jadi floating, bukan tiling
+hl.window_rule({ name = "float-swaync",    match = { class = "^(swaync)$" },        float = true })
+hl.window_rule({ name = "float-swaync2",   match = { title = "^(swaync.*)$" },       float = true })
+-- Glass notification daemon (custom python daemon)
+hl.window_rule({ name = "float-glassnotif", match = { class = "^(glass-notif.*)$" }, float = true })
+-- Generic: window bertitle/class mengandung "notification"
+hl.window_rule({ name = "float-notif-title", match = { title = ".*[Nn]otif.*" },     float = true })
+hl.window_rule({ name = "float-notif-class", match = { class = ".*[Nn]otif.*" },     float = true })
+
+-- ── BRAVE/CHROME BROWSER NOTIFICATION POPUP ──────────────────────────────────
+-- Terdeteksi via monitoring: popup notifikasi Brave punya class="", title="" (kosong semua)
+-- Ini adalah Wayland native popup dari Chromium-based browser
+hl.window_rule({
+    name  = "float-browser-notif-empty",
+    match = { class = "^$", title = "^$" },
+    float = true,
+})
+
+-- ── 7c. EVENT HANDLER: FORCE FLOAT POPUP KOSONG ──────────────────────────────
+-- Backup handler: setiap ada window baru dengan class kosong, langsung di-float
+-- "window.open_early" dipanggil sebelum window masuk ke layout (lebih cepat dari window.open)
+hl.on("window.open_early", function(win)
+    if win.class == "" and not win.xwayland then
+        hl.dispatch(hl.dsp.window.float({ action = "set", window = "address:" .. win.address }))
+    end
+end)
 
 -- ── 8. KEYBINDINGS (ORIGINAL SHELL COMPATIBLE) ──────────────────────────────
 
@@ -155,11 +191,11 @@ hl.bind("SUPER + V", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/clipboard.sh
 -- Wallpaper Switcher (Grid + Pywal)
 hl.bind("SUPER + W", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/wallpaper-picker.sh"))
 
--- Window Management (Original Shell)
+-- Window Management
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
+
 
 -- Focus Navigation (Arrows & Vim Keys)
 hl.bind("SUPER + left", hl.dsp.focus({ direction = "l" }))

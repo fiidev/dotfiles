@@ -1,0 +1,178 @@
+@import url("../../.cache/wal/colors-waybar.css");
+
+* {
+  font-family: "Plus Jakarta Sans", "CommitMono Nerd Font", sans-serif;
+  font-size: 13px;
+}
+
+window,
+#notification-window,
+.notification-row {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.notification-row {
+  margin: 6px 12px;
+}
+
+/* Notification Popup */
+.notification {
+  background: rgba(18, 20, 28, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-left: 1px solid rgba(255, 255, 255, 0.20);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 0;
+}
+
+.summary {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.body {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.time {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #ffffff;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0;
+  margin: 2px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Control Center Window */
+.control-center {
+  background: rgba(18, 20, 28, 0.88);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-left: 1px solid rgba(255, 255, 255, 0.20);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+  margin: 12px;
+}
+
+.widget-title {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.widget-title > button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  color: #ffffff;
+  padding: 4px 12px;
+}
+
+.widget-title > button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.widget-dnd {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.widget-dnd > switch {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.widget-dnd > switch:checked {
+  background: @color4;
+}
+
+.widget-buttons-grid {
+  margin-bottom: 12px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  color: #ffffff;
+  padding: 10px 14px;
+  margin: 4px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.widget-volume, .widget-backlight {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.widget-volume > scale, .widget-backlight > scale {
+  margin-left: 10px;
+}
+
+scale trough {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  min-height: 10px;
+}
+
+scale highlight {
+  background: @color4;
+  border-radius: 999px;
+}
+
+.widget-mpris {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}

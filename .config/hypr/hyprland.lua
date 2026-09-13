@@ -47,7 +47,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("batsignal -b -w 30 -c 20 -d 10")
     hl.exec_cmd(home .. "/.config/hypr/scripts/glass-cursor-tracker.py")
-    hl.exec_cmd("quickshell -d")
+    hl.exec_cmd("swaync")
 end)
 
 -- ── 5. CORE CONFIG (LOOK & FEEL, INPUT, GAPS) ───────────────────────────────
@@ -134,8 +134,8 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 4.5, spring = "jelly
 
 hl.layer_rule({ match = { namespace = "^(rofi)$" }, blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "^(waybar)$" }, blur = true, ignore_alpha = 0 })
--- notifications: no blur so liquid glass lens refracts crisp background
-hl.layer_rule({ match = { namespace = "^(notifications)$" }, blur = true, ignore_alpha = 0 })
+hl.layer_rule({ match = { namespace = "^(swaync-control-center)$" }, blur = true, ignore_alpha = 0 })
+hl.layer_rule({ match = { namespace = "^(swaync-notification-window)$" }, blur = true, ignore_alpha = 0 })
 
 -- ── 8. KEYBINDINGS (ORIGINAL SHELL COMPATIBLE) ──────────────────────────────
 
@@ -220,6 +220,9 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output -m eDP-1 --clipboard-only")
 hl.bind("CTRL + Print", hl.dsp.exec_cmd("hyprshot -m output -m eDP-1 --clipboard-only"))
 hl.bind("ALT + Print", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
 hl.bind("SUPER + P", hl.dsp.exec_cmd("hyprpicker -a"))
+
+-- Control Center (SwayNC)
+hl.bind("SUPER + N", hl.dsp.exec_cmd("swaync-client -t -sw"), { description = "Toggle Control Center" })
 
 -- Rice Utilities
 hl.bind("SUPER + G", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/focus-mode.sh"))

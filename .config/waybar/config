@@ -63,6 +63,7 @@
   "clock": {
     "format": "{:%I:%M %p}",
     "format-alt": "{:%a, %d %b}",
+    "on-click": "swaync-client -t -sw",
     "tooltip": false
   },
   "pulseaudio": {
@@ -75,7 +76,8 @@
         "\uf028"
       ]
     },
-    "on-click": "pavucontrol",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "pavucontrol",
     "tooltip": false
   },
   "backlight": {

@@ -7,7 +7,7 @@ Personal desktop configuration for Hyprland on CachyOS (Arch Linux).
 - Window Manager: Hyprland (Lua configuration via hyprland.lua)
 - Bar: Waybar
 - Application Launcher: Rofi
-- Notification Daemon: Mako
+- Notification & Control Center: SwayNC
 - Terminal: Kitty
 - Shell: Fish with Starship prompt
 - System Info: Fastfetch
@@ -25,9 +25,10 @@ dotfiles/
 │   ├── gtk-4.0/       # GTK 4 theme and font settings
 │   ├── hypr/          # Hyprland compositor, idle, lock, and custom scripts
 │   ├── kitty/         # Kitty terminal emulator configuration
-│   ├── mako/          # Mako notification daemon configuration
+│   ├── mako/          # Mako notification daemon configuration (backup)
 │   ├── rofi/          # Rofi launcher configurations, themes, and scripts
 │   ├── starship.toml  # Starship prompt configuration
+│   ├── swaync/        # SwayNC notification and control center
 │   └── waybar/        # Waybar bar configuration, styles, and scripts
 └── walls/             # Desktop wallpapers
 ```
@@ -36,6 +37,7 @@ dotfiles/
 
 - Super + Space: Application launcher (Rofi)
 - Super + Return: Terminal (Kitty)
+- Super + N: Toggle Control Center (SwayNC)
 - Super + E: File Manager (Nautilus)
 - Super + C: Code Editor (VS Code)
 - Super + V: Clipboard history manager
